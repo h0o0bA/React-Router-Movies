@@ -25,7 +25,21 @@ export default class App extends Component {
         <SavedList list={this.state.savedList} />
         <div>
           <Route exact path="/" component={MovieList} />
-          <Route path="/movie/:id" component={Movie} />
+          <Route
+            exact
+            path="/movie/:id"
+            //  get access to all three props - match, history, and location, and pass those down to the component.
+            render={props => (
+              <Movie
+                addToSavedList={this.addToSavedList}
+                match={props.match}
+                history={props.history}
+                location={props.location}
+                //  Since the three props we are trying to pass through have the same property name on the props object as the prop name, we can remove all three of them as pass them along like this {...props}. This will “spread” in all three props that we passed through manually above:
+                //  {...props}
+              />
+            )}
+          />
         </div>
       </div>
     );
