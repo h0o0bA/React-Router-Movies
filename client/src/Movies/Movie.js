@@ -39,7 +39,11 @@ export default class Movie extends Component {
 
   render() {
     if (!this.state.movie) {
-      return <div>Loading movie information...</div>;
+      return (
+        <div>
+          <center>Movie ID does not exist!</center>
+        </div>
+      );
     }
 
     const { title, director, metascore, stars } = this.state.movie;
